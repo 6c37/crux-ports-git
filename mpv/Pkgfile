@@ -1,0 +1,39 @@
+# Description: General Purpose video player based on MPlayer and mplayer2
+# URL:         https://mpv.io/
+# Maintainer:  6c37 Team, https://github.com/6c37/crux-ports-git/issues
+# Deponds on:  git libjpeg-turbo freetype fribidi
+# Optional:    youtube-dl
+
+name=mpv
+version=git
+release=1
+source=()
+
+download_git() {
+	if [[ -d $PKGMK_SOURCE_DIR/$name ]]; then
+		git -C $PKGMK_SOURCE_DIR/$name fetch --depth=1
+		git -C $PKGMK_SOURCE_DIR/$name clean -f
+		git -C $PKGMK_SOURCE_DIR/$name reset --hard origin/$2
+	else
+		git -C $PKGMK_SOURCE_DIR clone --depth=1 $1 -b $2 $name
+	fi
+
+	cp -r $PKGMK_SOURCE_DIR/$name $PKGMK_WORK_DIR/src/$name
+}
+
+build() {
+	download_git https://github.com/avih/mpv-build mpv-build-rewrite
+	cd $name
+
+	# libressl fix
+	sed -i 's/\-\-enable-openssl"/"/g' scripts/ffmpeg-config
+	echo '--enable-libtls' >> ffmpeg_options
+
+	echo '--prefix=/usr' >> mpv_options
+	./rebuild -j${JOBS-1}
+
+	cd source/mpv
+	./waf install --destdir=$PKG
+
+	rm -r $PKG/usr/share/doc
+}

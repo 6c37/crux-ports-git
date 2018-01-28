@@ -1,0 +1,16 @@
+# Description: An epub metadata tool.
+# URL:         https://geek1011.github.io/kepubify/
+# Maintainer:  6c37 Team, https://github.com/6c37/crux-ports-git/issues
+# Depends on:  go
+
+name=seriesmeta
+version=git
+release=1
+source=()
+
+build() {
+	export GOPATH=$(pwd)
+	go get -u -v github.com/geek1011/kepubify/seriesmeta
+
+	install -Dm755 bin/seriesmeta $PKG/usr/bin/seriesmeta
+}

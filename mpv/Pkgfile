@@ -25,10 +25,6 @@ build() {
 	download_git https://github.com/avih/mpv-build mpv-build-rewrite
 	cd $name
 
-	# libressl fix
-	sed -i 's/\-\-enable-openssl"/"/g' scripts/ffmpeg-config
-	echo 'config_ffmpeg_opts_config="--enable-libtls"' > user.conf
-
 	echo 'config_mpv_opts_config="--prefix=/usr"' >> user.conf
 	./rebuild -j${JOBS-1}
 

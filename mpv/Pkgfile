@@ -6,7 +6,7 @@
 
 name=mpv
 version=git
-release=1
+release=2
 source=()
 
 download_git() {
@@ -27,13 +27,11 @@ build() {
 
 	# libressl fix
 	sed -i 's/\-\-enable-openssl"/"/g' scripts/ffmpeg-config
-	echo '--enable-libtls' >> ffmpeg_options
+	echo 'config_ffmpeg_opts_config="--enable-libtls"' > user.conf
 
-	echo '--prefix=/usr' >> mpv_options
+	echo 'config_mpv_opts_config="--prefix=/usr"' >> user.conf
 	./rebuild -j${JOBS-1}
 
 	cd source/mpv
 	./waf install --destdir=$PKG
-
-	rm -r $PKG/usr/share/doc
 }

@@ -2,89 +2,22 @@
 # URL:         https://github.com/alecthomas/gometalinter
 # Maintainer:  6c37 Team, https://github.com/6c37/crux-ports-git/issues
 # Depends on:  go
+# Optional:    misspell
 
 name=gometalinter
 version=git
-release=1
+release=2
 source=()
 
 build() {
 	export GOPATH=$(pwd)
 
-	go get -u -v -fix golang.org/x/tools/cmd/gotype
-	install -Dm755 bin/gotype $PKG/usr/bin/gotype
-
-	go get -u -v -fix github.com/tsenart/deadcode
-	install -Dm755 bin/deadcode $PKG/usr/bin/godeadcode
-
-	go get -u -v -fix github.com/alecthomas/gocyclo
-	install -Dm755 bin/gocyclo $PKG/usr/bin/gocyclo
-
-	go get -u -v -fix github.com/golang/lint/golint
-	install -Dm755 bin/golint $PKG/usr/bin/golint
-
-	go get -u -v -fix github.com/opennota/check/cmd/varcheck
-	install -Dm755 bin/varcheck $PKG/usr/bin/govarcheck
-
-	go get -u -v -fix github.com/opennota/check/cmd/structcheck
-	install -Dm755 bin/structcheck $PKG/usr/bin/gostructcheck
-
-	go get -u -v -fix github.com/mdempsky/maligned
-	install -Dm755 bin/maligned $PKG/usr/bin/gomaligned
-
-	go get -u -v -fix github.com/kisielk/errcheck
-	install -Dm755 bin/errcheck $PKG/usr/bin/goerrcheck
-
-	go get -u -v -fix honnef.co/go/tools/cmd/megacheck
-	install -Dm755 bin/megacheck $PKG/usr/bin/gomegacheck
-
-	go get -u -v -fix github.com/mibk/dupl
-	install -Dm755 bin/dupl $PKG/usr/bin/godupl
-
-	go get -u -v -fix github.com/gordonklaus/ineffassign
-	install -Dm755 bin/ineffassign $PKG/usr/bin/goineffassign
-
-	go get -u -v -fix mvdan.cc/interfacer
-	install -Dm755 bin/interfacer $PKG/usr/bin/gointerfacer
-
-	go get -u -v -fix github.com/mdempsky/unconvert
-	install -Dm755 bin/unconvert $PKG/usr/bin/gounconvert
-
-	go get -u -v -fix github.com/jgautheron/goconst/cmd/goconst
-	install -Dm755 bin/goconst $PKG/usr/bin/goconst
-
-	go get -u -v -fix github.com/GoASTScanner/gas
-	install -Dm755 bin/gas $PKG/usr/bin/gogas
-
-	go get -u -v -fix golang.org/x/tools/cmd/goimports
-	install -Dm755 bin/goimports $PKG/usr/bin/goimports
-
-	go get -u -v -fix honnef.co/go/tools/cmd/gosimple
-	install -Dm755 bin/gosimple $PKG/usr/bin/gosimple
-
-	go get -u -v -fix mvdan.cc/unparam
-	install -Dm755 bin/unparam $PKG/usr/bin/gounparam
-
-	go get -u -v -fix honnef.co/go/tools/cmd/unused
-	install -Dm755 bin/unused $PKG/usr/bin/gounused
-
 	go get -u -v -fix github.com/alecthomas/gometalinter
-	cd src/github.com/alecthomas/gometalinter
-	find . -type f -print0 | xargs -0 sed -i \
-		-e 's/govet/go vet/g' \
-		-e 's/deadcode/godeadcode/g' \
-		-e 's/varcheck/govarcheck/g' \
-		-e 's/structcheck/gostructcheck/g' \
-		-e 's/maligned/gomaligned/g' \
-		-e 's/errcheck/goerrcheck/g' \
-		-e 's/megacheck/gomegacheck/g' \
-		-e 's/dupl/godupl/g' \
-		-e 's/ineffassign/goineffassign/g' \
-		-e 's/interfacer/gointerfacer/g' \
-		-e 's/unconvert/gounconvert/g' \
-		-e 's/gas/gogas/g' \
-		-e 's/unparam/gounparam/g' \
-		-e 's/unused/gounused/g'
-	go build
-	install -Dm755 gometalinter $PKG/usr/bin/gometalinter
+	install -Dm755 bin/gometalinter $PKG/usr/bin/gometalinter
+
+	$PKG/usr/bin/gometalinter -i
+	cp -r bin/* $PKG/usr/bin/
+
+	# Provided by the misspell port
+	rm $PKG/usr/bin/misspell
 }

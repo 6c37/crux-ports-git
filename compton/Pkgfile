@@ -5,7 +5,7 @@
 
 name=compton
 version=git
-release=1
+release=2
 source=()
 
 download_git() {
@@ -20,9 +20,8 @@ download_git() {
 	cp -r $PKGMK_SOURCE_DIR/$name $PKGMK_WORK_DIR/src/$name
 }
 
-
 build() {
-	download_git https://github.com/chjj/$name master
+	download_git https://github.com/yshui/$name master
 	cd $name
 
 	make NO_DBUS=1 compton

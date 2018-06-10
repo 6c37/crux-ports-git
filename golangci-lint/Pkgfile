@@ -1,0 +1,16 @@
+# Description: A linters aggregator for Go.
+# URL:         https://golangci.com/
+# Maintainer:  6c37 Team, https://github.com/6c37/crux-ports-git/issues
+# Depends on:  go
+
+name=golangci-lint
+version=git
+release=1
+source=()
+
+build() {
+	export GOPATH=$(pwd)
+
+	go get -u -v -fix github.com/golangci/golangci-lint/cmd/golangci-lint
+	install -Dm755 bin/golangci-lint $PKG/usr/bin/golangci-lint
+}

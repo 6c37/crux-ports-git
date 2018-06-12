@@ -1,0 +1,16 @@
+# Description: A gofmt/goimports-like tool for Go programmers.
+# URL:         https://github.com/sqs/goreturns
+# Maintainer:  6c37 Team, https://github.com/6c37/crux-ports-git/issues
+# Depends on:  go
+
+name=goreturns
+version=git
+release=1
+source=()
+
+build() {
+	export GOPATH=$(pwd)
+
+	go get -u -v -fix github.com/sqs/goreturns
+	install -Dm755 bin/goreturns $PKG/usr/bin/goreturns
+}

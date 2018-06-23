@@ -1,7 +1,7 @@
 # Description: General Purpose video player based on MPlayer and mplayer2
 # URL:         https://mpv.io/
 # Maintainer:  6c37 Team, https://github.com/6c37/crux-ports-git/issues
-# Deponds on:  git libjpeg-turbo freetype fribidi
+# Depends on:  git libjpeg-turbo freetype fribidi
 # Optional:    youtube-dl
 
 name=mpv
@@ -25,7 +25,7 @@ build() {
 	download_git https://github.com/avih/mpv-build mpv-build-rewrite
 	cd $name
 
-	echo 'config_mpv_opts_config="--prefix=/usr"' >> user.conf
+	echo 'config_mpv_opts_config="--prefix=/usr"' >>user.conf
 	./rebuild -j${JOBS-1}
 
 	cd source/mpv

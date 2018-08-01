@@ -5,7 +5,7 @@
 
 name=caddy
 version=git
-release=7
+release=8
 source=(
 	caddy.conf
 	caddy
@@ -16,6 +16,8 @@ build() {
 	go get -u -v -fix github.com/mholt/$name/$name
 	go get -u -v -fix github.com/caddyserver/builds
 	cd src/github.com/mholt/$name/$name
+
+	sed -i 's/var EnableTelemetry = true/var EnableTelemetry = false/' caddymain/run.go
 
 	go run build.go
 

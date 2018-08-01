@@ -14,7 +14,7 @@ build() {
 	if cd $name; then
 		git fetch -q; git reset --hard origin/master
 	else
-		git clone https://github.com/jschx/$name $name
+		git clone https://gitlab.com/jschx/$name $name
 		cd $name
 	fi
 

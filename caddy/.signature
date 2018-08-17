@@ -1,6 +1,6 @@
 untrusted comment: verify with /etc/ports/6c37-git.pub
-RWQY8eVY1sSPFUrtHyoHzNe5hNqNDokTcIHNWFrRijqiKduwo7XBoSsMO1Ij5yj68/nEIQ6PgoMLmu7tVwRBg4h9PMXyEhRksgc=
+RWQY8eVY1sSPFXKCHpQBukAy+9k1s8S0gnSu5gn3Wfyo3GxwnFk8tlAGaz3chFOwQxxMLr3dWPcT2+2rIhi4tOVUEEtwcqVA1gw=
 SHA256 (Pkgfile) = 178140bb5b9577079808cd7eafe9fd4c13407a47e2714416ac7069a10bc1aaa3
 SHA256 (.footprint) = b1c8b52058b70ef01fa89d18583d3cb76bdb6a0207ef04b9dbdea8ac1c499d24
 SHA256 (caddy.conf) = 4da8fca38aacec288744571c9bf8805b31af97857ff5e332d4a5c7252545dba8
-SHA256 (caddy) = 96d6c427d9bcfffbbd0d517a980c9ecde832390ce5dba3031dbb9a444d6710cd
+SHA256 (caddy) = f0d5931685454e64326776dbdf889e4ffc00fa29f25c5216048e8d3d09b6d1e2

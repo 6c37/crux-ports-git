@@ -6,7 +6,7 @@
 SSD=/sbin/start-stop-daemon
 PROG=/usr/sbin/caddy
 PID=/var/run/caddy.pid
-OPTS="-conf /etc/caddy/caddy.conf -agree -pidfile $PID"
+OPTS="-conf=/etc/caddy/caddy.conf -agree=true -pidfile=$PID"
 
 case $1 in
 start)
